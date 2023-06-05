@@ -109,6 +109,19 @@ Similar to the previous function.
 
 It sets up the variables, calculates the expected result based on the provided inputs using the helper functions, and compares the actual and expected results using assert np.isclose().
 
+
+### Some important results
+* 3D Gaussian plume model visualization
+
+
+![image](https://github.com/MinxingFu/EMSC_4033_project/assets/129235714/25a734cb-9e61-42da-b845-2ebc8744aec8)
+
+
+* Taking Beijing as the origin, UTC time is 2023-06-06 00:46:50.612255+08:00, the diffusion map when the wind direction is 341°.
+
+
+![image](https://github.com/MinxingFu/EMSC_4033_project/assets/129235714/f86fee3a-28d4-43f9-8bc5-69605be1466f)
+
 ### Limitations
 
 
