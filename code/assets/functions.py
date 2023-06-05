@@ -90,3 +90,55 @@ def emp_sigma_z(d, e, f, x):
     else:
         return (d * x) / np.power(1 + e * x, f) # Calculate the value of sigma_z using the given parameters
     
+def Drax_sigma_y(stability, x, sigma_v, u):
+    t = x / u
+    
+    if stability == "Stable":
+        TL_y = 1000 * 1.64
+    else:
+        TL_y = 1000 * 1.64
+
+    theta = np.arctan(sigma_v / u)
+    fy = 1 / (1 + (t / TL_y) ** 0.5)
+
+    return theta * x * fy  #returns the Drax value of sigma_y.
+
+#The Drax sigma_y value is determined by the stability condition, distance, vertical standard deviation, and wind speed.
+def Drax_sigma_z(stability, x, sigma_w, u):
+    t = x / u
+    
+    if stability == "Stable":
+        TL_z = 100 * 1.64
+    else:
+        TL_z = 500 * 1.64
+
+    phi = np.arctan(sigma_w / u)
+
+    fz = 1 / (1 + 0.9 * (t / TL_z) ** 0.5)
+
+    return phi * x * fz #returns the Drax sigma_z value.
+
+def concentration(x, y, z, Q, u, sigma_y, sigma_z, H):
+  
+ # phi_x calculates the downwind dispersion based on the emission rate and wind speed.
+    def phi_x(Q, u):
+        return Q/u
+
+# phi_y calculates the crosswind dispersion using a normal distribution formula. 
+# It takes into account the crosswind  variance and the y-coordinate.    
+    def phi_y(sigma_y, y):
+        
+        if np.sum(sigma_y) > 0.0:
+            return 1/(np.sqrt(2*np.pi)*sigma_y)*np.exp(-np.power(y,2)/(2*np.power(sigma_y,2)))
+        else:
+            return 0.0
+
+# phi_z calculates the vertical dispersion using a formula that considers the vertical-wind variance, the z-coordinate, and the effective source height.
+    def phi_z(sigma_z, z, H):
+        
+        if np.sum(sigma_z) > 0.0:
+                return 1/(np.sqrt(2*np.pi)*sigma_z)*(np.exp(-np.power(z-H, 2)/(2*np.power(sigma_z,2))) + np.exp(-np.power(z+H,2)/(2*np.power(sigma_z,2))))
+        else:
+            return 0.0
+# The function returns the product of these three components, representing the concentration at the specified point in space.        
+    return phi_x(Q,u)*phi_y(sigma_y, y)*phi_z(sigma_z, z, H)
