@@ -91,6 +91,24 @@ After obtaining the stability and empirical constants, we can start to define th
 
 Test case for empirical sigma y.
 
+
+`test_Drax_sigma_y()` function:
+
+
+test case for the original function. It sets up the necessary variables and calculates the expected result based on the provided inputs.
+
+
+`test_Drax_sigma_z()` function:
+
+
+Similar to the previous function.
+
+
+`test_concentration()` function:
+
+
+It sets up the variables, calculates the expected result based on the provided inputs using the helper functions, and compares the actual and expected results using assert np.isclose().
+
 ### Limitations
 
 
