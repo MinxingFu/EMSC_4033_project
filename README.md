@@ -1,4 +1,4 @@
-# Gaussian diffusion model
+# Gaussian plume model
 
 ## Instruction
 
