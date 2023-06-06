@@ -31,7 +31,7 @@ The progress of the project is carried out according to the following steps: det
 `pytz`: Provides functionality to localize and convert datetime objects to different time zones.
 
 
-`numpy`: Realize complex operations.
+`numpy` and `math`: Realize complex operations.
 
 
 `csv`: It provides functionality to parse CSV data into Python data structures and vice versa.
